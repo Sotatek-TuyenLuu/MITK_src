@@ -1,0 +1,59 @@
+/**
+\page MiniAppExplainPage MITK MiniApps
+
+\section MiniAppExplainPageDescription What are MiniApps
+
+MiniApps are small command line tools. Generally the purpose of each of these tools is designed to fulfill one simple task,
+e.g. resample an image or extract image statistics of a given region of interest (ROI).
+
+They are intended to provide command line access to a variety of features of MITK, thus facilitating batched processing of data.
+
+\section MiniAppExplainPageUsage Usage
+
+Each MiniApp should provide information about its usage. If it is called without parameters it will output help information about expected inputs, outputs and parameters.
+Below you can see the help output of the MitkGibbsTracking MiniApp:
+
+\code
+$./MitkGibbsTracking
+
+ -i, --input, input image (tensor, Q-ball or FSL/MRTrix SH-coefficient image)
+ -p, --parameters, parameter file (.gtp)
+ -m, --mask, binary mask image (optional)
+ -s, --shConvention, sh coefficient convention (FSL, MRtrix) (optional), (default: FSL)
+ -o, --outFile, output fiber bundle (.fib)
+ -f, --noFlip, do not flip input image to match MITK coordinate convention (optional)
+\endcode
+
+\section MiniAppExplainPageWorkbenchIntegration Integrating a command line tool into MITK Workbench
+
+The executable file has be to be announced in MITK Workbench. This can be done in Preferences window:
+Click 'Window' -> 'Preferences', and select 'Command Line Modules'. You can add directories containing executable files or you can select single executable files.
+Click 'OK' button.
+The configured command line tools are now available via the drop-down box of the Command Line Modules tab.
+
+\warning The build configuration of your MiniApp should match the build configuration of your MITK application. This is especially relevant for developers. Combining a Release application and Debug MiniApp or vice versa might not work.
+
+\section MiniAppExplainPageAvailableList Available MiniApps
+
+\li \subpage DiffusionMiniApps
+
+\section MiniAppExplainPageTechnicalInformation Technical Information
+
+MiniApps follow the <a href="http://www.slicer.org/slicerWiki/index.php/Slicer3:Execution_Model_Documentation">Slicer Execution Model</a> in describing themselves via xml:
+
+\code
+$./GibbsTracking --xml
+<executable>
+<category>Fiber Tracking and Processing Methods</category>
+<title>Gibbs Tracking</title>
+<description></description>
+<contributor>MBI</contributor>
+<parameters>
+...
+</parameters>
+</executable>
+\endcode
+
+\note Full conformity is still a work in progress.
+
+*/
